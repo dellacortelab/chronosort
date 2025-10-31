@@ -15,7 +15,7 @@ ChronoSort is a computational framework designed to extract dynamic conformation
 
 ## Getting Started
 
-ChronoSort ships with both command-line utilities and a Google Colab notebook. Example datasets are provided in `/data`.
+ChronoSort functions with both command-line utilities and a Google Colab notebook. Example datasets are provided in `/data/test_data`.
 
 ### Installation
 
@@ -41,7 +41,7 @@ An example CIF ensemble is found in `data/test_data`. To generate the example ou
 python scripts/run_analysis.py --cif_dir data/test_data
 ```
 
-This command reads all `.cif` files in the directory, constructs an RMSD-ordered trajectory, aligns backbone atoms, and performs PCA. Outputs are written to `output/` by default:
+This command reads all `.cif` files in the directory, constructs an RMSD-ordered trajectory, aligns backbone atoms, and performs a PCA analysis. Outputs are written to `output/` by default:
 
 - `output/trajectory.pdb`
 - `output/projection.pdb`
@@ -77,7 +77,7 @@ python scripts/run_analysis.py \
 
 `--components` accepts 0-based indices of the PCA modes to combine when generating the projected trajectory (e.g., `--components 0 1`).
 
-### What Happens Under the Hood
+### Pipeline Overview
 
 - `trajectory.py` builds an ordered, superimposed multi-model PDB using RMSD minimization.
 - `pca_analysis.py` aligns backbone atoms, performs PCA, and writes eigenvectors plus the projected trajectory.
