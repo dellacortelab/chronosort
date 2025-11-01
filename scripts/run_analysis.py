@@ -19,6 +19,7 @@ def main():
     parser.add_argument("--trajectory_file", default="output/trajectory.pdb", help="Output trajectory file")
     parser.add_argument("--vecs_file", default="output/vecs.txt", help="Output eigenvectors file")
     parser.add_argument("--projection_file", default="output/projection.pdb", help="Output PCA projection file")
+    parser.add_argument("--eigenvalues_file", default="output/eigenvalues.png", help="Output eigenvalues plot file")
     parser.add_argument("--scale", type=float, default=30.0, help="Scale for PCA projection")
     parser.add_argument(
         "--components",
@@ -38,6 +39,7 @@ def main():
     _ensure_parent_dir(args.trajectory_file)
     _ensure_parent_dir(args.vecs_file)
     _ensure_parent_dir(args.projection_file)
+    _ensure_parent_dir(args.eigenvalues_file)
 
     # Step 1: build trajectory from CIFs
     make_traj(args.cif_dir, args.trajectory_file)
@@ -49,6 +51,7 @@ def main():
         args.trajectory_file,
         args.vecs_file,
         args.projection_file,
+        eigenvalues_file=args.eigenvalues_file,
         components=args.components,
         scale=args.scale
     )

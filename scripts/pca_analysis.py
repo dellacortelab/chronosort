@@ -5,7 +5,7 @@ import MDAnalysis as mda
 from MDAnalysis.analysis import align, pca
 # from source.trajectory import make_traj  # No longer needed
 
-def pca_projection(path_to_pdbs, trajectory_file, vecs_file, projection_file, sel_str="name CA", components=[0], projection=[0, 1], scale=30.0):
+def pca_projection(path_to_pdbs, trajectory_file, vecs_file, projection_file, eigenvalues_file="output/eigenvalues.png", sel_str="name CA", components=[0], projection=[0, 1], scale=30.0):
     evec=[]
     # make_traj(path_to_pdbs, trajectory_file)  # Removed to prevent duplicate printing
     u = mda.Universe(trajectory_file)
@@ -46,9 +46,9 @@ def pca_projection(path_to_pdbs, trajectory_file, vecs_file, projection_file, se
     plt.ylabel("Percent of Variance Explained")
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig("output/eigenvalues.png")  # optional: save to output folder
+    plt.savefig(eigenvalues_file)
     plt.close()
-    print(f"Saved eigenvalues to 'output/eigenvalues.png'")
+    print(f"Saved eigenvalues to '{eigenvalues_file}'")
 
 
     frames = [frame0 + s * combined_vector for s in scales]
